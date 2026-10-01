@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Data Analysis - Diabetes Prediction AI{% endblock %}
+
+{% block content %}
+<div class="section-header">
+  <h1>Exploratory Data Analysis</h1>
+  <p>Pandas & Matplotlib analysis of the Pima Indians Diabetes Dataset</p>
+</div>
+
+<div class="grid" style="grid-template-columns: 1fr 2fr;">
+  <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+    <h3 class="card-title">Dataset Summary</h3>
+    <div>
+      <h4 style="color: var(--color-accent); font-size: 1rem;">Record Counts</h4>
+      <p style="color: var(--color-text-main);">768 rows &times; 9 columns</p>
+    </div>
+    <div>
+      <h4 style="color: var(--color-accent); font-size: 1rem;">Numerical Features</h4>
+      <p style="font-size: 0.9rem; color: var(--color-text-muted);">
+        Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age
+      </p>
+    </div>
+    <div>
+      <h4 style="color: var(--color-accent); font-size: 1rem;">Target Output</h4>
+      <p style="font-size: 0.9rem; color: var(--color-text-muted);">
+        Outcome (0 = Non-Diabetic, 1 = Diabetic)
+      </p>
+    </div>
+    <div>
+      <h4 style="color: var(--color-danger); font-size: 1rem;">Invalid Zeros Identified</h4>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+        Analysis revealed that several continuous physiological metrics contained zero values:
+      </p>
+      <ul style="font-size: 0.8rem; padding-left: 1.2rem; color: var(--color-text-muted); margin-top: 0.25rem;">
+        <li>Glucose: 5 zeros</li>
+        <li>BloodPressure: 35 zeros</li>
+        <li>SkinThickness: 227 zeros</li>
+        <li>Insulin: 374 zeros</li>
+        <li>BMI: 11 zeros</li>
+      </ul>
+      <p style="font-size: 0.85rem; color: var(--color-accent); margin-top: 0.5rem;">
+        These zeros are physically invalid and are treated as missing values (NaN) during preprocessing.
+      </p>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <h3 style="color: var(--color-accent); margin-bottom: 1rem;">Class Balance (Outcome Column)</h3>
+    <img src="{{ url_for('static', filename='plots/class_dist.png') }}" alt="Class Distribution Chart">
+    <div class="chart-description">
+      <strong>Interpretation:</strong> Out of 768 patients, 500 (65.1%) belong to the Non-Diabetic class (Outcome = 0) and 268 (34.9%) belong to the Diabetic class (Outcome = 1). This shows moderate class imbalance, which is critical to account for when interpreting model evaluations (relying on Precision and Recall, rather than just Accuracy).
+    </div>
+  </div>
+</div>
+
+<div class="chart-container">
+  <h3 style="color: var(--color-accent); margin-bottom: 1rem;">Clinical Feature Distributions (Valid Values Only)</h3>
+  <img src="{{ url_for('static', filename='plots/feature_histograms.png') }}" alt="Feature Histograms">
+  <div class="chart-description">
+    <strong>Interpretation:</strong> These histograms display the distribution of physical characteristics for valid observations (with zeros removed). 
+    <ul>
+      <li><strong>Glucose</strong> shows a near-normal distribution centered around 120 mg/dL.</li>
+      <li><strong>BloodPressure</strong> exhibits a normal distribution centered near 70-75 mmHg.</li>
+      <li><strong>BMI</strong> has a bell curve peak around 32 kg/m², highlighting that a high percentage of patients are overweight or obese.</li>
+      <li><strong>Age</strong> is heavily right-skewed, showing that the cohort consists primarily of younger adults (ages 21 to 40).</li>
+    </ul>
+  </div>
+</div>
+
+<div class="chart-container">
+  <h3 style="color: var(--color-accent); margin-bottom: 1rem;">Feature Correlation Heatmap</h3>
+  <img src="{{ url_for('static', filename='plots/correlation_matrix.png') }}" alt="Correlation Heatmap">
+  <div class="chart-description">
+    <strong>Interpretation:</strong> Correlation analysis measures linear relationships between variables (range: -1 to +1). 
+    <ul>
+      <li><strong>Glucose</strong> displays the strongest linear correlation with the <strong>Outcome</strong> (0.47), confirming its clinical relevance as a predictor.</li>
+      <li><strong>BMI</strong> and <strong>Age</strong> also show moderate positive correlation (0.29 and 0.24) with the target.</li>
+      <li>Variables like <strong>Glucose/Insulin</strong> and <strong>Age/Pregnancies</strong> exhibit reasonable positive correlation, representing physiological relationships.</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

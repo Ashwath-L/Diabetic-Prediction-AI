@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}About Project - Diabetes Prediction AI{% endblock %}
+
+{% block content %}
+<div class="section-header">
+  <h1>AI Project Lifecycle & Architecture</h1>
+  <p>Detailed outline of the system flow, development steps, and future scope</p>
+</div>
+
+<div class="grid" style="grid-template-columns: 2fr 1fr;">
+  <!-- Project Lifecycle -->
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-accent); margin-bottom: 1.5rem;">The AI Project Lifecycle</h3>
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <div style="border-left: 2px solid var(--color-accent); padding-left: 1rem;">
+        <h4 style="color: var(--color-text-main); font-size: 1rem;">1. Problem Identification & Objectives</h4>
+        <p style="font-size: 0.9rem; color: var(--color-text-muted);">
+          Defining the medical classification task: predicting if a patient belongs to the diabetic or non-diabetic class based on clinical history attributes.
+        </p>
+      </div>
+      <div style="border-left: 2px solid var(--color-accent); padding-left: 1rem;">
+        <h4 style="color: var(--color-text-main); font-size: 1rem;">2. Data Collection</h4>
+        <p style="font-size: 0.9rem; color: var(--color-text-muted);">
+          Acquiring the standard Pima Indians Diabetes Dataset from the National Institute of Diabetes and Digestive and Kidney Diseases.
+        </p>
+      </div>
+      <div style="border-left: 2px solid var(--color-accent); padding-left: 1rem;">
+        <h4 style="color: var(--color-text-main); font-size: 1rem;">3. Data Analysis & Cleaning</h4>
+        <p style="font-size: 0.9rem; color: var(--color-text-muted);">
+          Using Pandas to read files, identify missing values, locate invalid zero values (Glucose, Blood Pressure, BMI, etc.), and plot distributions with Matplotlib.
+        </p>
+      </div>
+      <div style="border-left: 2px solid var(--color-accent); padding-left: 1rem;">
+        <h4 style="color: var(--color-text-main); font-size: 1rem;">4. Data Preprocessing & Feature Engineering</h4>
+        <p style="font-size: 0.9rem; color: var(--color-text-muted);">
+          Replacing zeros with NaN, imputing using column medians, and scaling features using <code>StandardScaler</code>. Engineering the <code>Glucose * Age</code> interaction feature.
+        </p>
+      </div>
+      <div style="border-left: 2px solid var(--color-accent); padding-left: 1rem;">
+        <h4 style="color: var(--color-text-main); font-size: 1rem;">5. Model Development & Evaluation</h4>
+        <p style="font-size: 0.9rem; color: var(--color-text-muted);">
+          Training Logistic Regression, KNN, Decision Tree, and Keras ANN. Evaluating performance using Accuracy, Precision, Recall, and Confusion Matrices.
+        </p>
+      </div>
+      <div style="border-left: 2px solid var(--color-accent); padding-left: 1rem;">
+        <h4 style="color: var(--color-text-main); font-size: 1rem;">6. Model Deployment</h4>
+        <p style="font-size: 0.9rem; color: var(--color-text-muted);">
+          Saving the trained models and preprocessors (pickles & keras files) and launching a lightweight Flask web application to serve predictions.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+    <!-- Architecture -->
+    <div class="card" style="border-color: var(--color-secondary);">
+      <h3 class="card-title" style="color: var(--color-secondary);">System Architecture</h3>
+      <p style="font-size: 0.85rem; color: var(--color-text-main); margin-bottom: 0.75rem;">
+        Here is how information flows in this web application:
+      </p>
+      <div style="font-size: 0.8rem; background-color: var(--color-bg-primary); padding: 0.75rem; border-radius: 4px; font-family: monospace; color: #a5d6ff; line-height: 1.4;">
+        [User Inputs Page]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (POST)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+        [Add Interaction Feature]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+        [Impute (imputer.pkl)]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+        [Scale (scaler.pkl)]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+        [Model Classifiers]<br>
+        &nbsp;├─ Logistic Regression<br>
+        &nbsp;├─ KNN Classifier<br>
+        &nbsp;├─ Decision Tree<br>
+        &nbsp;└─ TensorFlow ANN<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+        [Display Predictions Page]
+      </div>
+    </div>
+
+    <!-- Future Scope -->
+    <div class="card">
+      <h3 class="card-title" style="color: var(--color-accent);">Future Scope of AI</h3>
+      <ul style="padding-left: 1.2rem; font-size: 0.85rem; color: var(--color-text-muted); display: flex; flex-direction: column; gap: 0.5rem;">
+        <li>📈 <strong>Dataset Scaling:</strong> Train models on larger, multi-hospital, multi-ethnic datasets to improve generalization.</li>
+        <li>🧬 <strong>Multi-Omics:</strong> Integrate genomic, proteomic, and metabolic markers alongside basic clinical parameters.</li>
+        <li>⌚ <strong>Real-time Streams:</strong> Connect continuous glucose monitor (CGM) IoT streams to trigger warnings before hyperglycemic onset.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

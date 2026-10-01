@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}Internship Learning - Diabetes Prediction AI{% endblock %}
+
+{% block content %}
+<div class="section-header">
+  <h1>15-Day Internship Mapping</h1>
+  <p>Overview of how the Artificial Intelligence Internship syllabus topics are implemented and demonstrated in this project</p>
+</div>
+
+<div class="learning-timeline">
+  
+  <!-- Day 1 -->
+  <div class="timeline-day">
+    <h3>Day 1 (Syllabus Days 1 + 2): Introduction to AI & Fundamentals</h3>
+    <p><strong>Topics:</strong> Definition of AI, History and Evolution, Types of AI, Intelligent Agents, Problem Solving, Search Algorithms, Knowledge Representation.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Explained conceptually on the <strong>AI Concepts</strong> and <strong>About</strong> pages. The diabetes predictor represents a goal-based intelligent agent mapping inputs (clinical metrics) to actions (class predictions).
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="timeline-day">
+    <h3>Day 2 (Syllabus Days 3 + 4): Python for AI & Data Handling with NumPy</h3>
+    <p><strong>Topics:</strong> Variables, Data Types, Control Structures, Functions, Modules, NumPy Arrays, Array Operations, Mathematical Computations.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Built using clean Python modules under <code>src/</code>. NumPy arrays are used for data manipulation, replacing invalid zeros (<code>np.nan</code>), and formatting inputs for TensorFlow model predictions.
+    </div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="timeline-day">
+    <h3>Day 3 (Syllabus Days 5 + 6): Pandas & Data Visualization</h3>
+    <p><strong>Topics:</strong> Loading datasets, DataFrames, cleaning, filtering, aggregation, statistical summary, Matplotlib charts (histograms, bar plots, scatter plots).</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Loaded the dataset in <code>src/data_analysis.py</code> using Pandas. Generated class distribution bar charts, correlation matrix heatmaps, and feature distributions using Matplotlib, rendered on the <strong>Data Analysis</strong> page.
+    </div>
+  </div>
+
+  <!-- Day 4 -->
+  <div class="timeline-day">
+    <h3>Day 4 (Syllabus Days 7 + 8): AI Development Environment & ML Intro</h3>
+    <p><strong>Topics:</strong> Jupyter Notebook, Google Colab, Supervised vs Unsupervised Learning, Machine Learning classification problem formulation.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Developed a complete <code>notebooks/diabetes_prediction.ipynb</code> notebook that runs step-by-step in Jupyter/Colab. Formulated the main task as a Supervised Classification problem since known Outcome labels (0/1) are present.
+    </div>
+  </div>
+
+  <!-- Day 5 -->
+  <div class="timeline-day">
+    <h3>Day 5 (Syllabus Days 9 + 10): Data Preprocessing & Feature Engineering</h3>
+    <p><strong>Topics:</strong> Handling missing values, feature scaling (StandardScaler), feature selection, data transformation, importance of features.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Replaced invalid zeros and imputed them with <code>SimpleImputer</code>, scaled attributes using <code>StandardScaler</code> in <code>src/preprocessing.py</code>. Created interaction feature <code>Glucose_Age_Interaction = Glucose * Age</code> and analyzed feature correlation in <code>src/feature_engineering.py</code>.
+    </div>
+  </div>
+
+  <!-- Day 6 -->
+  <div class="timeline-day">
+    <h3>Day 6 (Syllabus Days 11 + 12): Regression & Classification</h3>
+    <p><strong>Topics:</strong> Linear Regression, Multiple Linear Regression, Logistic Regression, K-Nearest Neighbors (KNN), Decision Trees.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Implemented Simple and Multiple Linear Regression separately in <code>src/regression.py</code> to predict continuous BloodPressure. Implemented three classification algorithms (Logistic Regression, KNN, Decision Tree) in <code>src/classification.py</code> to solve the main classification task.
+    </div>
+  </div>
+
+  <!-- Day 7 -->
+  <div class="timeline-day">
+    <h3>Day 7 (Syllabus Days 13 + 14): Model Evaluation & Clustering</h3>
+    <p><strong>Topics:</strong> Accuracy, Precision, Recall, Confusion Matrix (TP, TN, FP, FN), K-Means Clustering, Hierarchical Clustering.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Computed performance metrics on test splits in <code>src/evaluation.py</code> and plotted confusion matrices. Implemented K-Means and Hierarchical Clustering on Glucose and BMI in <code>src/clustering.py</code> to demonstrate unsupervised data-driven grouping (using a fixed K=3).
+    </div>
+  </div>
+
+  <!-- Day 8 -->
+  <div class="timeline-day">
+    <h3>Day 8 (Syllabus Days 15 + 16): Deep Learning & ANN</h3>
+    <p><strong>Topics:</strong> Neural Network concepts, Perceptron, Activation Functions (ReLU, Sigmoid), ANN Architecture, Forward Propagation, Backpropagation, Training.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Designed a multi-layer feedforward network using TensorFlow/Keras in <code>src/neural_network.py</code>. The model uses Dense layers, ReLU activations in hidden layers, and Sigmoid at the output, trained and evaluated on the diabetes dataset.
+    </div>
+  </div>
+
+  <!-- Day 9 -->
+  <div class="timeline-day">
+    <h3>Day 9 (Syllabus Days 17 + 18): CNN & NLP</h3>
+    <p><strong>Topics:</strong> CNN architecture, Image Classification, Natural Language Processing, text processing, tokenization, sentiment analysis.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Configured as educational concept modules on the <strong>AI Concepts</strong> page. Explains CNN structures (convolution, pooling) and NLP tokenization steps, documenting why CNNs are not suitable for this tabular dataset.
+    </div>
+  </div>
+
+  <!-- Day 10 -->
+  <div class="timeline-day">
+    <h3>Day 10 (Syllabus Days 19 + 20): AI Libraries & Computer Vision</h3>
+    <p><strong>Topics:</strong> Scikit-Learn, TensorFlow, Keras, NumPy, Pandas, Matplotlib, Image Recognition, Object Detection, Face Recognition.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Leveraged Scikit-Learn (models, imputer, scaler), TensorFlow/Keras (ANN building), and Matplotlib (visualizations). Explained Computer Vision algorithms conceptually on the <strong>AI Concepts</strong> page.
+    </div>
+  </div>
+
+  <!-- Day 11 -->
+  <div class="timeline-day">
+    <h3>Day 11 (Syllabus Days 21 + 22): Recommendation Systems & AI Ethics</h3>
+    <p><strong>Topics:</strong> Collaborative vs Content-Based Filtering, Bias, Fairness, Transparency, Privacy, Ethical practices, Disclaimers.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Explained recommendation algorithms (collaborative/content) conceptually. Dedicated the <strong>Ethics</strong> page to analyzing Bias, Fairness, Privacy, and Transparency, including a prominent medical disclaimer on the prediction and results views.
+    </div>
+  </div>
+
+  <!-- Day 12 -->
+  <div class="timeline-day">
+    <h3>Day 12 (Syllabus Days 23 + 24): Generative AI & Prompt Engineering</h3>
+    <p><strong>Topics:</strong> Large Language Models, AI chatbots, prompt writing techniques, response optimization, practical exercises.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Outlined Generative AI LLM architectures on the <strong>AI Concepts</strong> page. Includes a prompt engineering exercise showing how to craft structured prompts to format medical metrics into markdown.
+    </div>
+  </div>
+
+  <!-- Day 13 -->
+  <div class="timeline-day">
+    <h3>Day 13 (Syllabus Days 25 + 26): AI Project Lifecycle & Model Deployment</h3>
+    <p><strong>Topics:</strong> Project Lifecycle steps, model deployment concepts, Flask deployment implementation.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Illustrated the complete project lifecycle on the <strong>About</strong> page. Deployed the trained classifiers via a Flask python web server (<code>app.py</code>) enabling real-time classification prediction.
+    </div>
+  </div>
+
+  <!-- Day 14 -->
+  <div class="timeline-day">
+    <h3>Day 14 (Syllabus Days 27 + 28): Industry Applications & Project Development</h3>
+    <p><strong>Topics:</strong> AI in healthcare, finance, manufacturing, and smart systems; integrated project development.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Discussed industry applications on the <strong>About</strong> page. Developed the complete modular code codebase integrating python modules, visualization, models, and Flask deployment.
+    </div>
+  </div>
+
+  <!-- Day 15 -->
+  <div class="timeline-day">
+    <h3>Day 15 (Syllabus Days 29 + 30): Validation, Presentation & Conclusion</h3>
+    <p><strong>Topics:</strong> Model testing, performance evaluation, error analysis, optimization, future scope.</p>
+    <div class="demo-details">
+      <strong>Demonstration:</strong> Tested models on validation splits, conducted comparative error analysis, and summarized learnings and future scope on the <strong>About</strong> page.
+    </div>
+  </div>
+
+</div>
+{% endblock %}

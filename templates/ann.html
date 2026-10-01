@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}ANN Deep Learning - Diabetes Prediction AI{% endblock %}
+
+{% block content %}
+<div class="section-header">
+  <h1>Artificial Neural Networks & Deep Learning</h1>
+  <p>Overview of the Keras Neural Network structure, training history, and core concepts</p>
+</div>
+
+<div class="grid" style="grid-template-columns: 2fr 1fr;">
+  <div class="chart-container">
+    <h3 style="color: var(--color-accent); margin-bottom: 1rem;">ANN Training Metrics (Loss & Accuracy)</h3>
+    <img src="{{ url_for('static', filename='plots/ann_training.png') }}" alt="ANN Training Progress">
+    <div class="chart-description">
+      <strong>Training Interpretation:</strong> The training progress is plotted over epochs. The **Loss Curve** demonstrates optimization, showing how the binary crossentropy loss decreases on the training set. The **Accuracy Curve** shows model precision improving as backpropagation adjusts weights to fit training data, validated against the unseen validation split.
+    </div>
+  </div>
+
+  <div class="card" style="display: flex; flex-direction: column; gap: 1.25rem;">
+    <h3 class="card-title">ANN Architecture</h3>
+    <div>
+      <h4 style="color: var(--color-accent); font-size: 1rem;">Input Layer</h4>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+        9 features (8 raw dataset features + 1 engineered interaction term).
+      </p>
+    </div>
+    
+    <div>
+      <h4 style="color: var(--color-accent); font-size: 1rem;">Hidden Layer 1</h4>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+        16 Dense Neurons with <strong>ReLU</strong> activation function to introduce non-linearity.
+      </p>
+    </div>
+    
+    <div>
+      <h4 style="color: var(--color-accent); font-size: 1rem;">Hidden Layer 2</h4>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+        8 Dense Neurons with <strong>ReLU</strong> activation.
+      </p>
+    </div>
+    
+    <div>
+      <h4 style="color: var(--color-accent); font-size: 1rem;">Output Layer</h4>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+        1 Neuron with <strong>Sigmoid</strong> activation outputting classification probability (0 to 1).
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section-header" style="margin-top: 2rem;">
+  <h2>Core Deep Learning Concepts</h2>
+  <p>Theoretical breakdown of neural network topics from the internship syllabus</p>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-secondary);">Perceptron & Neurons</h3>
+    <p style="margin-bottom: 0.5rem;">
+      The <strong>Perceptron</strong> is the fundamental building block of neural networks. It takes inputs \(x_i\), multiplies them by weights \(w_i\), sums them with a bias \(b\), and passes the result through an activation function:
+      \[z = \sum_{i=1}^{n} w_i x_i + b\]
+    </p>
+    <p>
+      An <strong>Artificial Neural Network (ANN)</strong> connects multiple layers of these perceptrons to model complex relationships.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-secondary);">Forward & Backpropagation</h3>
+    <p style="margin-bottom: 0.5rem;">
+      <strong>Forward Propagation</strong>: Input features flow forward through the layers. Each layer calculates activation values until the output node generates a prediction.
+    </p>
+    <p>
+      <strong>Backpropagation</strong>: Calculates the error at the output using the loss function, and sends this error backward through the network using the chain rule (derivatives) to update the weights and biases to minimize loss.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-accent);">Activation Functions</h3>
+    <p style="margin-bottom: 0.5rem;">
+      Activation functions decide if a neuron should fire. We use two key functions:
+    </p>
+    <ul style="padding-left: 1.2rem; font-size: 0.85rem; color: var(--color-text-muted);">
+      <li><strong>ReLU (Rectified Linear Unit)</strong>: \(f(z) = \max(0, z)\). Used in hidden layers to avoid the vanishing gradient problem.</li>
+      <li><strong>Sigmoid</strong>: \(\sigma(z) = \frac{1}{1 + e^{-z}}\). Squashes output into a range of 0 to 1, perfect for binary classification probability mapping.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card" style="margin-top: 2rem;">
+  <h3 class="card-title" style="color: var(--color-accent);">Keras Model Implementation Code</h3>
+  <pre style="background-color: var(--color-bg-primary); padding: 1.25rem; border: 1px solid var(--color-border); border-radius: 4px; color: #a5d6ff; overflow-x: auto; font-family: monospace; font-size: 0.9rem;">
+# Model architecture built in TensorFlow/Keras
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+model = Sequential([
+    # Input layer shape is defined by input features count (9 features)
+    # Hidden Layer 1 with ReLU activation
+    Dense(16, activation='relu', input_shape=(input_dim,), name='hidden_layer_1'),
+    # Hidden Layer 2 with ReLU activation
+    Dense(8, activation='relu', name='hidden_layer_2'),
+    # Output Layer with Sigmoid activation for binary classification
+    Dense(1, activation='sigmoid', name='output_layer')
+])
+
+# Compilation of loss function and optimizer
+model.compile(
+    optimizer='adam',
+    loss='binary_crossentropy',
+    metrics=['accuracy']
+)
+  </pre>
+</div>
+{% endblock %}

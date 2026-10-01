@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}AI Concepts - Diabetes Prediction AI{% endblock %}
+
+{% block content %}
+<div class="section-header">
+  <h1>Internship Learning Concepts</h1>
+  <p>Theoretical breakdown and simple examples of syllabus topics not directly used in the tabular classification model</p>
+</div>
+
+<div class="card" style="margin-bottom: 2rem; border-top: 4px solid var(--color-secondary);">
+  <h3 class="card-title" style="color: var(--color-secondary);">Why are these topics separated?</h3>
+  <p>
+    The core diabetes prediction task utilizes <strong>tabular medical features</strong> (numbers representing glucose, age, BMI, etc.). Advanced topics like Computer Vision, CNNs, and NLP are designed for unstructured data (images, text). To maintain strict technical integrity and follow the internship syllabus, we present these topics as educational concepts here rather than forcing them into our tabular data pipeline.
+  </p>
+</div>
+
+<div class="grid">
+  <!-- CNN Card -->
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-accent);">1. Convolutional Neural Networks (CNN)</h3>
+    <h4 style="color: var(--color-text-main); font-size: 0.95rem; margin-bottom: 0.25rem;">Key Architecture:</h4>
+    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+      Convolutions (filters detecting edges/textures) &rarr; Pooling (reducing dimensions) &rarr; Fully Connected Layers (classification output).
+    </p>
+    <h4 style="color: var(--color-text-main); font-size: 0.95rem; margin-bottom: 0.25rem;">Applications:</h4>
+    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+      Image Classification, Medical Imaging (X-Ray, MRI scans).
+    </p>
+    <p style="font-size: 0.85rem; color: var(--color-danger); font-weight: bold;">
+      ⚠️ Tabular Check: Tabular fields do not exhibit spatial grids or local structures, making 1D models like Decision Trees, KNN, and simple ANNs more appropriate than CNNs.
+    </p>
+  </div>
+
+  <!-- NLP Card -->
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-accent);">2. Natural Language Processing (NLP)</h3>
+    <h4 style="color: var(--color-text-main); font-size: 0.95rem; margin-bottom: 0.25rem;">Text Processing Pipeline:</h4>
+    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+      Lowercasing &rarr; Stopwords Removal &rarr; Tokenization (splitting sentences into words) &rarr; Sentiment Analysis (classifying positive/negative polarity).
+    </p>
+    <h4 style="color: var(--color-text-main); font-size: 0.95rem; margin-bottom: 0.25rem;">Concept Demonstration:</h4>
+    <div style="font-size: 0.8rem; background-color: var(--color-bg-primary); padding: 0.5rem; border-radius: 4px; font-family: monospace;">
+      Input: "I feel very healthy and active today."<br>
+      Tokens: ["feel", "healthy", "active", "today"]<br>
+      Sentiment: Positive (Polarity: +0.8)
+    </div>
+  </div>
+
+  <!-- Computer Vision Card -->
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-accent);">3. Computer Vision</h3>
+    <h4 style="color: var(--color-text-main); font-size: 0.95rem; margin-bottom: 0.25rem;">Key Core Methods:</h4>
+    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+      Image Recognition (identifying objects), Object Detection (localizing objects with bounding boxes), and Face Recognition (matching facial geometry features).
+    </p>
+    <h4 style="color: var(--color-text-main); font-size: 0.95rem; margin-bottom: 0.25rem;">Applications:</h4>
+    <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+      Biometric authentication, autonomous vehicles, retail checkout monitoring.
+    </p>
+  </div>
+
+  <!-- Recommendation Systems Card -->
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-accent);">4. Recommendation Systems</h3>
+    <h4 style="color: var(--color-text-main); font-size: 0.95rem; margin-bottom: 0.25rem;">Filtering Methods:</h4>
+    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+      <strong>Collaborative Filtering:</strong> Recommends items based on similarities between user behaviors (e.g. users who liked X also liked Y).
+      <br>
+      <strong>Content-Based Filtering:</strong> Recommends items that have similar features to what the user liked in the past.
+    </p>
+    <p style="font-size: 0.85rem; color: var(--color-secondary); font-weight: bold;">
+      📌 Clinical Safeguard: We strictly do not recommend treatments, dosages, or drugs. Healthcare recommendation systems require extreme clinical validation.
+    </p>
+  </div>
+
+  <!-- Generative AI Card -->
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-accent);">5. Generative AI</h3>
+    <h4 style="color: var(--color-text-main); font-size: 0.95rem; margin-bottom: 0.25rem;">Large Language Models (LLMs):</h4>
+    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+      Neural networks trained on massive text corpuses to generate human-like sequences of text, code, or media by predicting the next token.
+    </p>
+    <h4 style="color: var(--color-text-main); font-size: 0.95rem; margin-bottom: 0.25rem;">Applications:</h4>
+    <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+      AI chatbots (customer support), summarization assistants, automated draft generation.
+    </p>
+  </div>
+
+  <!-- Prompt Engineering Card -->
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-accent);">6. Prompt Engineering</h3>
+    <h4 style="color: var(--color-text-main); font-size: 0.95rem; margin-bottom: 0.25rem;">Design Techniques:</h4>
+    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+      Writing specific, structured instructions to optimize output quality and accuracy from Generative AI LLMs (e.g. role assignment, few-shot prompting).
+    </p>
+    <h4 style="color: var(--color-text-main); font-size: 0.95rem; margin-bottom: 0.25rem;">Practical Exercise Prompt (Example):</h4>
+    <div style="font-size: 0.75rem; background-color: var(--color-bg-primary); padding: 0.5rem; border-radius: 4px; font-family: monospace; color: #a5d6ff;">
+      "You are a medical data transcriptionist. Summarize the following raw clinical metrics into a neat markdown table with columns for Feature and Value. Patient: Glucose 120 mg/dL, BMI 30.2, Age 42."
+    </div>
+  </div>
+</div>
+{% endblock %}

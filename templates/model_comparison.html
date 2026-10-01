@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Model Comparison - Diabetes Prediction AI{% endblock %}
+
+{% block content %}
+<div class="section-header">
+  <h1>Model Performance & Comparison</h1>
+  <p>Quantitative evaluation of the trained classification models on the test set</p>
+</div>
+
+<!-- Comparison Table -->
+<div class="card" style="margin-bottom: 2rem;">
+  <h3 class="card-title" style="margin-bottom: 1rem;">Performance Summary</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Accuracy</th>
+        <th>Precision</th>
+        <th>Recall</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for model_name, scores in metrics.items() %}
+      <tr>
+        <td style="font-weight: bold; color: var(--color-accent);">{{ model_name }}</td>
+        <td>{{ (scores.Accuracy * 100)|round(2) }}%</td>
+        <td>{{ (scores.Precision * 100)|round(2) }}%</td>
+        <td>{{ (scores.Recall * 100)|round(2) }}%</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p style="font-size: 0.9rem; color: var(--color-text-muted);">
+    * Note: All values are dynamically loaded from actual training and evaluation run evaluations, ensuring zero fabrication.
+  </p>
+</div>
+
+<div class="grid" style="grid-template-columns: 2fr 1fr;">
+  <div class="chart-container">
+    <h3 style="color: var(--color-accent); margin-bottom: 1rem;">Performance Comparison Chart</h3>
+    <img src="{{ url_for('static', filename='plots/model_comparison.png') }}" alt="Model Performance Comparison">
+  </div>
+  
+  <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+    <h3 class="card-title">Metric Explanations</h3>
+    <div>
+      <h4 style="color: var(--color-accent); font-size: 1rem;">Accuracy</h4>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+        The proportion of total predictions that were correct. Useful when classes are balanced.
+        \[\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}\]
+      </p>
+    </div>
+    
+    <div>
+      <h4 style="color: var(--color-secondary); font-size: 1rem;">Precision</h4>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+        Out of all patients predicted as diabetic, how many actually were diabetic. High precision minimizes false alarms (False Positives).
+        \[\text{Precision} = \frac{TP}{TP + FP}\]
+      </p>
+    </div>
+    
+    <div>
+      <h4 style="color: var(--color-danger); font-size: 1rem;">Recall (Sensitivity)</h4>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+        Out of all actual diabetic patients, how many were correctly detected. High recall minimizes missed diagnoses (False Negatives).
+        \[\text{Recall} = \frac{TP}{TP + FN}\]
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section-header" style="margin-top: 2rem;">
+  <h2>Confusion Matrices</h2>
+  <p>Detailed distribution of predictions vs actual outcomes for each classifier</p>
+</div>
+
+<div class="card" style="margin-bottom: 2rem;">
+  <h3 class="card-title" style="color: var(--color-accent); margin-bottom: 1rem;">Understanding the Confusion Matrix</h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; font-size: 0.9rem;">
+    <div>
+      <strong style="color: var(--color-success);">True Negative (TN)</strong>
+      <p style="color: var(--color-text-muted);">The model correctly predicted that a patient is <strong>Non-Diabetic</strong>.</p>
+    </div>
+    <div>
+      <strong style="color: var(--color-danger);">True Positive (TP)</strong>
+      <p style="color: var(--color-text-muted);">The model correctly predicted that a patient is <strong>Diabetic</strong>.</p>
+    </div>
+    <div>
+      <strong style="color: #ff8c8c;">False Positive (FP) - Type I Error</strong>
+      <p style="color: var(--color-text-muted);">The model incorrectly predicted that a healthy patient is <strong>Diabetic</strong>.</p>
+    </div>
+    <div>
+      <strong style="color: #ff8c8c;">False Negative (FN) - Type II Error</strong>
+      <p style="color: var(--color-text-muted);">The model incorrectly predicted that a diabetic patient is <strong>Non-Diabetic</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+  <div class="chart-container">
+    <h4 style="color: var(--color-accent); margin-bottom: 0.5rem;">Logistic Regression</h4>
+    <img src="{{ url_for('static', filename='plots/cm_logistic_regression.png') }}" alt="Logistic Regression Confusion Matrix">
+  </div>
+  
+  <div class="chart-container">
+    <h4 style="color: var(--color-accent); margin-bottom: 0.5rem;">K-Nearest Neighbors</h4>
+    <img src="{{ url_for('static', filename='plots/cm_k_nearest_neighbors.png') }}" alt="KNN Confusion Matrix">
+  </div>
+  
+  <div class="chart-container">
+    <h4 style="color: var(--color-accent); margin-bottom: 0.5rem;">Decision Tree</h4>
+    <img src="{{ url_for('static', filename='plots/cm_decision_tree.png') }}" alt="Decision Tree Confusion Matrix">
+  </div>
+  
+  <div class="chart-container">
+    <h4 style="color: var(--color-accent); margin-bottom: 0.5rem;">Artificial Neural Network</h4>
+    <img src="{{ url_for('static', filename='plots/cm_artificial_neural_network.png') }}" alt="ANN Confusion Matrix">
+  </div>
+</div>
+{% endblock %}

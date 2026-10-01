@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Diabetes Prediction AI{% endblock %}
+
+{% block content %}
+<div class="section-header">
+  <h1>Diabetes Prediction using Artificial Intelligence</h1>
+  <p>Educational AI/ML Internship Capstone Project</p>
+</div>
+
+<div class="card" style="margin-bottom: 2rem; border-top: 4px solid var(--color-accent);">
+  <h2 class="card-title" style="color: var(--color-accent); font-size: 1.5rem; margin-bottom: 1rem;">Project Overview</h2>
+  <p style="margin-bottom: 1rem; color: var(--color-text-main);">
+    This project is an educational Artificial Intelligence system designed to predict whether an individual belongs to the diabetic or non-diabetic class. Using the standard <strong>Pima Indians Diabetes Dataset</strong>, we demonstrate core concepts covered in the 15-day AI internship syllabus, including Python, Pandas, NumPy, Matplotlib, Supervised Machine Learning (classification models), Unsupervised Learning (clustering), and Deep Learning (Artificial Neural Networks with TensorFlow/Keras).
+  </p>
+  <p style="margin-bottom: 1rem;">
+    The project pipeline is split into logical stages representing the complete <strong>AI Project Lifecycle</strong>: data collection, cleaning, preprocessing, feature engineering, model training, evaluation, and deployment using a lightweight Flask interface.
+  </p>
+  <a href="{{ url_for('prediction') }}" class="btn">Launch Prediction Dashboard &rarr;</a>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-accent);">Supervised ML</h3>
+    <p style="margin-bottom: 1rem;">
+      Train and test classification models to map inputs to diabetic outcomes.
+    </p>
+    <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--color-text-muted);">
+      <strong>Algorithms:</strong> Logistic Regression, K-Nearest Neighbors, Decision Trees.
+    </p>
+    <a href="{{ url_for('model_comparison') }}" style="color: var(--color-accent); text-decoration: none; font-size: 0.9rem; font-weight: bold;">View Performance &rarr;</a>
+  </div>
+
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-secondary);">Deep Learning (ANN)</h3>
+    <p style="margin-bottom: 1rem;">
+      Implement an Artificial Neural Network using Keras to demonstrate neural network structures, forward propagation, and backpropagation.
+    </p>
+    <a href="{{ url_for('ann') }}" style="color: var(--color-secondary); text-decoration: none; font-size: 0.9rem; font-weight: bold;">Explore Neural Net &rarr;</a>
+  </div>
+
+  <div class="card">
+    <h3 class="card-title" style="color: var(--color-accent);">Unsupervised Clustering</h3>
+    <p style="margin-bottom: 1rem;">
+      Demonstrate data-driven grouping using continuous features without outcome labels.
+    </p>
+    <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--color-text-muted);">
+      <strong>Algorithms:</strong> K-Means Clustering, Hierarchical Clustering.
+    </p>
+    <a href="{{ url_for('clustering') }}" style="color: var(--color-accent); text-decoration: none; font-size: 0.9rem; font-weight: bold;">View Clustering Plots &rarr;</a>
+  </div>
+</div>
+
+<div class="grid" style="grid-template-columns: 2fr 1fr;">
+  <div class="card">
+    <h3 class="card-title">Dataset Characteristics</h3>
+    <p style="margin-bottom: 1rem;">
+      The Pima Indians Diabetes Dataset contains numerical health features from female patients of Pima Indian heritage. Features include:
+    </p>
+    <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem; font-size: 0.95rem; padding-left: 0;">
+      <li>🩺 <strong>Pregnancies:</strong> Number of times pregnant</li>
+      <li>🩺 <strong>Glucose:</strong> Plasma glucose concentration (2 hours in GTT)</li>
+      <li>🩺 <strong>BloodPressure:</strong> Diastolic blood pressure (mmHg)</li>
+      <li>🩺 <strong>SkinThickness:</strong> Triceps skin fold thickness (mm)</li>
+      <li>🩺 <strong>Insulin:</strong> 2-Hour serum insulin (mu U/ml)</li>
+      <li>🩺 <strong>BMI:</strong> Body mass index (weight in kg/(height in m)^2)</li>
+      <li>🩺 <strong>DiabetesPedigreeFunction:</strong> Diabetes pedigree score</li>
+      <li>🩺 <strong>Age:</strong> Age in years</li>
+    </ul>
+    <p>
+      The target output is <strong>Outcome</strong> (0 for Non-Diabetic, 1 for Diabetic).
+    </p>
+  </div>
+
+  <div class="card" style="border-color: var(--color-secondary);">
+    <h3 class="card-title" style="color: var(--color-secondary);">AI Ethics & Disclaimer</h3>
+    <p style="margin-bottom: 1rem; font-size: 0.9rem;">
+      As this model handles clinical data, we highlight the ethical and social aspects of medical AI systems.
+    </p>
+    <div class="disclaimer-box" style="margin-bottom: 0; padding: 0.75rem; font-size: 0.85rem;">
+      <strong>Disclaimer:</strong> This project is for educational use only. Predictions represent mathematical models, not medical diagnostic verdicts.
+    </div>
+  </div>
+</div>
+{% endblock %}

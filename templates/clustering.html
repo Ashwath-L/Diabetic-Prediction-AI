@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Clustering Analysis - Diabetes Prediction AI{% endblock %}
+
+{% block content %}
+<div class="section-header">
+  <h1>Unsupervised Clustering Analysis</h1>
+  <p>Data-driven grouping of patient records using K-Means and Hierarchical Clustering</p>
+</div>
+
+<div class="card" style="margin-bottom: 2.5rem; border-left: 4px solid var(--color-secondary);">
+  <h3 class="card-title" style="color: var(--color-secondary);">What is Unsupervised Learning Clustering?</h3>
+  <p style="margin-bottom: 0.75rem; color: var(--color-text-main);">
+    Unlike classification which relies on known clinical target labels (Outcome), <strong>Clustering</strong> groups observations purely based on the mathematical similarity of their clinical features (we use <strong>Glucose</strong> and <strong>BMI</strong> for visualization). 
+  </p>
+  <p style="font-weight: bold; color: var(--color-accent);">
+    ⚠️ Important Notice: These clusters represent groups of records with similar numerical characteristics. They are not medical diagnoses.
+  </p>
+</div>
+
+<div class="grid">
+  <div class="chart-container">
+    <h3 style="color: var(--color-accent); margin-bottom: 1rem;">K-Means Clustering Result (Fixed K=3)</h3>
+    <img src="{{ url_for('static', filename='plots/clustering_kmeans.png') }}" alt="K-Means Clusters">
+    <div class="chart-description">
+      <strong>Algorithm Explanation:</strong> 
+      K-Means partitions the dataset into \(K\) clusters. It starts with random centroids, assigns each data point to its nearest centroid, and recalculates the centroids as the mean of the assigned points. This process repeats until centroids stabilize. 
+      <br><br>
+      Here, we use a fixed \(K=3\) to group records into three distinct clinical profiles based on Glucose and BMI. The white stars represent the final calculated cluster centers (centroids).
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <h3 style="color: var(--color-accent); margin-bottom: 1rem;">Hierarchical Agglomerative Clustering</h3>
+    <img src="{{ url_for('static', filename='plots/clustering_hierarchical.png') }}" alt="Hierarchical Clusters">
+    <div class="chart-description">
+      <strong>Algorithm Explanation:</strong> 
+      Hierarchical Agglomerative Clustering is a bottom-up approach. It starts with each data point in its own cluster and repeatedly merges the closest pair of clusters until all points belong to a single tree structure.
+      <br><br>
+      We cut the resulting dendrogram to form 3 distinct clusters. The plot displays the resulting data groupings, showing a similar density shape compared to K-Means, but with slightly different boundaries reflecting the linkage criterion.
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Interpreting the Groups</h3>
+  <p style="margin-bottom: 1rem;">
+    By examining the centers of the groups, we can profile these subsets of records:
+  </p>
+  <ul style="padding-left: 1.5rem; color: var(--color-text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.5rem;">
+    <li>🟢 <strong>Group 1 (Low Risk Profile):</strong> Characterized by relatively low plasma glucose concentrations and healthy/lower BMI ranges.</li>
+    <li>🔵 <strong>Group 2 (Moderate Profile):</strong> Consists of records with moderate glucose levels and elevated BMI values.</li>
+    <li>🔴 <strong>Group 3 (High Risk Profile):</strong> Exhibits significantly elevated glucose levels combined with very high BMI values.</li>
+  </ul>
+  <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--color-text-muted);">
+    This grouping highlights how unsupervised learning can automatically partition a patient population into sub-populations for tailored health screening strategies, without needing prior diagnostics.
+  </p>
+</div>
+{% endblock %}
